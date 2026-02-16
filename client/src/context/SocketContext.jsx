@@ -1,0 +1,25 @@
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { io } from 'socket.io-client';
+
+const SocketContext = createContext(null);
+
+export const SocketProvider = ({ children, token }) => {
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    if (!token) return undefined;
+    const socketClient = io(import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000', {
+      auth: { token }
+    });
+    setSocket(socketClient);
+
+    return () => {
+      socketClient.disconnect();
+    };
+  }, [token]);
+
+  const value = useMemo(() => ({ socket }), [socket]);
+  return <SocketContext.Provider value={value}>{children}</SocketContext.Provider>;
+};
+
+export const useSocket = () => useContext(SocketContext);

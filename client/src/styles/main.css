@@ -1,0 +1,22 @@
+:root { font-family: Inter, sans-serif; color: #111; background: #f4f6f8; }
+body { margin: 0; }
+.centered { min-height: 100vh; display: grid; place-items: center; }
+.auth-card { display: flex; flex-direction: column; gap: 0.75rem; background: white; padding: 1.5rem; border-radius: 10px; width: 300px; }
+.layout header { display: flex; gap: 1rem; align-items: center; justify-content: space-between; background: #0f172a; color: white; padding: 0.75rem 1rem; }
+.content { display: grid; grid-template-columns: 220px 1fr 360px; gap: 0.75rem; padding: 0.75rem; height: calc(100vh - 64px); }
+.room-list, .chat-window, .video-panel { background: white; border-radius: 10px; padding: 0.75rem; overflow: hidden; }
+.room { display: block; width: 100%; text-align: left; margin-bottom: 0.4rem; border: none; background: #eef2ff; border-radius: 8px; padding: 0.5rem; }
+.room.active { background: #c7d2fe; }
+.messages { height: 65vh; overflow: auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem; margin-bottom: 0.6rem; }
+.composer { display: flex; gap: 0.4rem; }
+.composer input[type='file'] { width: 150px; }
+.video-panel { display: flex; flex-direction: column; gap: 0.5rem; }
+.video { width: 100%; background: #0f172a; border-radius: 10px; aspect-ratio: 16 / 9; }
+.video-actions { display: flex; gap: 0.5rem; }
+.error { color: #b91c1c; }
+.link-button { background: none; border: none; color: #2563eb; cursor: pointer; text-align: left; padding: 0; }
+
+@media (max-width: 1024px) {
+  .content { grid-template-columns: 1fr; height: auto; }
+  .messages { height: 40vh; }
+}
